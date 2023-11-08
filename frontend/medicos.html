@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
+
+    <link rel="icon" href="./public/dashboard/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./public/dashboard/img/favicon.ico" type="image/x-icon">
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="./public/dashboard/modules/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./public/dashboard/modules/fontawesome/css/all.min.css" />
+
+    <!-- CSS Libraries -->
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="./public/dashboard/css/style.css" />
+    <link rel="stylesheet" href="./public/dashboard/css/components.css" />
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <ul class="navbar-nav mr-3 mr-auto">
+                    <li>
+                        <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img alt="image" src="./public/dashboard/img/avatar/avatar-1.png"
+                                class="rounded-circle mr-1" />
+                            <div class="d-sm-none d-lg-inline-block">Hola, Fernando</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="features-profile.html" class="dropdown-item has-icon">
+                                <i class="far fa-user"></i> Perfil
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item has-icon text-danger">
+                                <i class="fas fa-sign-out-alt"></i> Salir
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="main-sidebar sidebar-style-2">
+                <aside id="sidebar-wrapper">
+                    <div class="sidebar-brand">
+                        <a href="#">Admin</a>
+                    </div>
+                    <div class="sidebar-brand sidebar-brand-sm">
+                        <a href="#">ADM</a>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="menu-header">Dashboard</li>
+
+                        <li>
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-fire"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="dropdown active">
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                                <i class="fas fa-users"></i> <span>Usuarios</span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="nav-link" href="#">Administradores</a>
+                                </li>
+                                <li class="active">
+                                    <a class="nav-link" href="#">Medicos</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="#">Usuario</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="nav-link" href="./especialidades.html">
+                                <i class="fas fa-user-graduate"></i>
+                                <span>Especialidades</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-puzzle-piece"></i>
+                                <span>Publicidad</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-hospital"></i>
+                                <span>Hospitales / Clinicas</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </aside>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-header">
+                        <h1>Medicos</h1>
+                    </div>
+
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>
+                                            Lista de medicos
+                                            <a href="#" class="btn btn-primary">
+                                                <i class="fas fa-plus-circle"></i>
+                                                Nuevo
+                                            </a>
+                                        </h4>
+                                        <div class="card-header-form">
+                                            <form>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Buscar">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-primary">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped" id="tabla-medicos">
+
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <footer class="main-footer">
+                <div class="footer-left">
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    . Todos los derechos recervados. &mdash; Desarrollado por el equipo de SIS324
+                </div>
+                <div class="footer-right">versión 1.0.0</div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="./public/dashboard/modules/jquery.min.js"></script>
+    <script src="./public/dashboard/modules/popper.js"></script>
+    <script src="./public/dashboard/modules/tooltip.js"></script>
+    <script src="./public/dashboard/modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./public/dashboard/modules/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="./public/dashboard/modules/moment.min.js"></script>
+    <script src="./public/dashboard/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+
+    <!-- Page Specific JS File -->
+
+    <!-- Template JS File -->
+    <script src="./public/dashboard/js/scripts.js"></script>
+    <script src="./public/dashboard/js/custom.js"></script>
+
+    <!--  -->
+    <script src="./scripts/medicos.js"></script>
+</body>
+
+</html>
