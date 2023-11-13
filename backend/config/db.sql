@@ -33,7 +33,7 @@ CREATE TABLE medicos(
     id_usuario INT NOT NULL,
     id_especialidad INT,
     id_clinica INT,
-    anios_esperiencia INT,
+    anios_experiencia INT,
     fecha_nacimiento DATE,
     pais VARCHAR(50),
     departamento VARCHAR(50),

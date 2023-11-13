@@ -54,11 +54,8 @@ class Usuario {
                 expiresIn: '1h',
             });
 
-            // Cerrar la conexión a la base de datos
             await db.close();
-
-            // Devolver el id y el token
-            return { id: userId, token };
+            return { id_usuario: userId, token };
         } catch (error) {
             throw error;
         }
@@ -97,7 +94,6 @@ class Usuario {
             // Cerrar la conexión a la base de datos
             await db.close();
 
-            // Devolver el id y el token
             // devolver el usuario y el token
             return { usuario: usuarioEncontrado, token };
         } catch (error) {
@@ -108,8 +104,6 @@ class Usuario {
     cerrarSesion() {
         this.token = null;
     }
-
-
 }
 
 module.exports = Usuario;

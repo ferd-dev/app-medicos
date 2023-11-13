@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Usuario = require('../models/Usuario');
+const Medico = require('../models/Medico');
 
 class UsuariosController {
     async registrarUsuario(req, res) {
@@ -16,16 +17,40 @@ class UsuariosController {
                 rol
             );
 
-            // Registrar el nuevo usuario
-            const resultado = await usuarioNuevo.registrar();
+            const { id_usuario, token } = await usuarioNuevo.registrar();
 
-            // Generar el token JWT con la clave secreta de las variables de entorno
-            const token = jwt.sign({ id: resultado.id }, process.env.JWT_SECRET);
+            let data = {};
 
-            // Devolver una respuesta exitosa con el id y el token
-            res.status(200).json({ id: resultado.id, token: resultado.token });
+            if (rol === 'medi') {
+                const medicoNuevo = new Medico(
+                    null,
+                    id_usuario,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                );
+
+                const { id_medico } =  await medicoNuevo.crear();
+                data = {
+                    id_usuario,
+                    id_medico,
+                    token
+                }
+            } else {
+                data = {
+                    id_usuario,
+                    token
+                }
+            }
+            res.status(200).json(data);
         } catch (error) {
-            // Devolver una respuesta de error con el mensaje correspondiente
             res.status(500).json({ error: error.message });
         }
     }
@@ -42,10 +67,8 @@ class UsuariosController {
             // Generar el token JWT con el id del usuario
             const token = jwt.sign({ id: resultado.usuario.id }, process.env.JWT_SECRET);
 
-            // Devolver una respuesta exitosa con el id y el token
             res.status(200).json({ usuario: resultado.usuario, token });
         } catch (error) {
-            // Devolver una respuesta de error con el mensaje correspondiente
             res.status(500).json({ error: error.message });
         }
     }
@@ -53,14 +76,9 @@ class UsuariosController {
     cerrarSesion(req, res) {
         try {
             const usuario = new Usuario();
-
-            // Cerrar sesión del usuario
             usuario.cerrarSesion();
-
-            // Devolver una respuesta exitosa
             res.status(200).json({ message: 'Sesión cerrada exitosamente.' });
         } catch (error) {
-            // Devolver una respuesta de error con el mensaje correspondiente
             res.status(500).json({ error: error.message });
         }
     }
