@@ -18,10 +18,21 @@ CREATE TABLE especialidades (
     activo TINYINT(1) DEFAULT 1
 );
 
+CREATE TABLE clinicas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(150) NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    departamento VARCHAR(50) NOT NULL,
+    municipio VARCHAR(50) NOT NULL,
+    direccion VARCHAR(150) NOT NULL,
+    activo TINYINT(1) DEFAULT 1
+);
+
 CREATE TABLE medicos(
     id INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,
     id_especialidad INT,
+    id_clinica INT,
     anios_esperiencia INT,
     fecha_nacimiento DATE,
     pais VARCHAR(50),
@@ -31,7 +42,8 @@ CREATE TABLE medicos(
     licencia VARCHAR(50),
     verificado TINYINT(1) DEFAULT 0,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
-    FOREIGN KEY (id_especialidad) REFERENCES especialidades(id)
+    FOREIGN KEY (id_especialidad) REFERENCES especialidades(id),
+    FOREIGN KEY (id_clinica) REFERENCES clinicas(id)
 );
 
 CREATE TABLE tipos_estudios (
@@ -52,16 +64,6 @@ CREATE TABLE estudios (
     activo TINYINT(1) DEFAULT 1,
     FOREIGN KEY (id_medico) REFERENCES medicos(id),
     FOREIGN KEY (id_tipo_estudio) REFERENCES tipos_estudios(id)
-);
-
-CREATE TABLE clinicas (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(150) NOT NULL,
-    telefono VARCHAR(20) NOT NULL,
-    departamento VARCHAR(50) NOT NULL,
-    municipio VARCHAR(50) NOT NULL,
-    direccion VARCHAR(150) NOT NULL,
-    activo TINYINT(1) DEFAULT 1
 );
 
 CREATE TABLE trabajos (
