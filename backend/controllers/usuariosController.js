@@ -29,6 +29,41 @@ class UsuariosController {
             res.status(500).json({ error: error.message });
         }
     }
+
+    async iniciarSesion(req, res) {
+        try {
+            const { usuario, password } = req.body;
+
+            const usuarioExistente = new Usuario();
+
+            // Iniciar sesión del usuario
+            const resultado = await usuarioExistente.iniciarSesion(usuario, password);
+
+            // Generar el token JWT con el id del usuario
+            const token = jwt.sign({ id: resultado.usuario.id }, process.env.JWT_SECRET);
+
+            // Devolver una respuesta exitosa con el id y el token
+            res.status(200).json({ usuario: resultado.usuario, token });
+        } catch (error) {
+            // Devolver una respuesta de error con el mensaje correspondiente
+            res.status(500).json({ error: error.message });
+        }
+    }
+
+    cerrarSesion(req, res) {
+        try {
+            const usuario = new Usuario();
+
+            // Cerrar sesión del usuario
+            usuario.cerrarSesion();
+
+            // Devolver una respuesta exitosa
+            res.status(200).json({ message: 'Sesión cerrada exitosamente.' });
+        } catch (error) {
+            // Devolver una respuesta de error con el mensaje correspondiente
+            res.status(500).json({ error: error.message });
+        }
+    }
 }
 
 module.exports = UsuariosController;

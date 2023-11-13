@@ -11,6 +11,7 @@ class Usuario {
         this.correo = correo;
         this.password = password;
         this.rol = rol;
+        this.token = null;
     }
 
     async registrar() {
@@ -62,6 +63,53 @@ class Usuario {
             throw error;
         }
     }
+
+    async iniciarSesion(usuario, password) {
+        try {
+            const db = new Database();
+            await db.connect();
+
+            // Buscar al usuario por nombre de usuario o correo electrónico
+            const query = 'SELECT * FROM usuarios WHERE usuario = ? OR correo = ?';
+            const params = [usuario, usuario];
+            const result = await db.query(query, params);
+            const usuarioEncontrado = result[0];
+
+            if (!usuarioEncontrado) {
+                throw new Error('Usuario no encontrado.');
+            }
+
+            // Verificar la contraseña
+            const passwordValido = await bcrypt.compare(password, usuarioEncontrado.password);
+
+            if (!passwordValido) {
+                throw new Error('Contraseña incorrecta.');
+            }
+
+            // Generar el token JWT
+            const token = jwt.sign({ id: usuarioEncontrado.id }, process.env.JWT_SECRET, {
+                expiresIn: '1h',
+            });
+
+            // Asignar el token al usuario
+            this.token = token;
+
+            // Cerrar la conexión a la base de datos
+            await db.close();
+
+            // Devolver el id y el token
+            // devolver el usuario y el token
+            return { usuario: usuarioEncontrado, token };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    cerrarSesion() {
+        this.token = null;
+    }
+
+
 }
 
 module.exports = Usuario;
