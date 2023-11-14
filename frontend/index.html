@@ -88,20 +88,12 @@
             <div class="row">
                 <div class="col-md-12 mx-auto my-3 pb-4">
                     <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">
-                        Clinicas y Hospitales
+                        Clinicas y Hospitales <button class="btn btn-primary px-3 py-2">Ver más</>
                     </h2>
                 </div>
-                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
-                    <div class="box-feature">
-                        <span class="flaticon-building"></span>
-                        <h3 class="mb-3">Property for Sale</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Voluptates, accusamus.
-                        </p>
-                        <p><a href="#" class="learn-more">Learn More</a></p>
-                    </div>
-                </div>
+            </div>
+            <div class="row" id="contenedorClinicas">
+
             </div>
         </div>
     </section>
@@ -109,14 +101,14 @@
     <div class="section sec-testimonials">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 mx-auto">
+                <div class="col-md-12 text-center mx-auto my-3 pb-4">
                     <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">
-                        Medicos registrados recientemente
+                        Medicos registrados recientemente <button class="btn btn-primary px-3 py-2">Ver todos</>
                     </h2>
                 </div>
             </div>
-            <div class="row mb-5 align-items-center">
-                <div class="col-md-6 text-md-end">
+            <div class="row">
+                <div class="col-md-12 text-center mx-auto pb-4">
                     <div id="testimonial-nav">
                         <span class="prev" data-controls="prev">Anterior</span>
                         <span class="next" data-controls="next">Siguiente</span>
@@ -129,6 +121,75 @@
             </div>
             <div class="testimonial-slider-wrap">
                 <div class="testimonial-slider">
+                    <div class="item">
+                        <div class="testimonial">
+                            <img src="./public/landing/images/perfiles/avatar.jpg" alt="Image"
+                                class="img-fluid rounded-circle w-25 mb-4" />
+                            <div class="rate">
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                            </div>
+                            <h3 class="h5 text-primary mb-4"><a href="">James Smith</a></h3>
+                            <blockquote>
+                                <p>
+                                    &ldquo;Far far away, behind the word mountains, far from the
+                                    countries Vokalia and Consonantia, there live the blind
+                                    texts. Separated they live in Bookmarksgrove right at the
+                                    coast of the Semantics, a large language ocean.&rdquo;
+                                </p>
+                            </blockquote>
+                            <p class="text-black-50"><strong>Especialidad:</strong> Neurologo</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial">
+                            <img src="./public/landing/images/perfiles/avatar.jpg" alt="Image"
+                                class="img-fluid rounded-circle w-25 mb-4" />
+                            <div class="rate">
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                            </div>
+                            <h3 class="h5 text-primary mb-4"><a href="">James Smith</a></h3>
+                            <blockquote>
+                                <p>
+                                    &ldquo;Far far away, behind the word mountains, far from the
+                                    countries Vokalia and Consonantia, there live the blind
+                                    texts. Separated they live in Bookmarksgrove right at the
+                                    coast of the Semantics, a large language ocean.&rdquo;
+                                </p>
+                            </blockquote>
+                            <p class="text-black-50"><strong>Especialidad:</strong> Neurologo</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial">
+                            <img src="./public/landing/images/perfiles/avatar.jpg" alt="Image"
+                                class="img-fluid rounded-circle w-25 mb-4" />
+                            <div class="rate">
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                                <span class="icon-star text-warning"></span>
+                            </div>
+                            <h3 class="h5 text-primary mb-4"><a href="">James Smith</a></h3>
+                            <blockquote>
+                                <p>
+                                    &ldquo;Far far away, behind the word mountains, far from the
+                                    countries Vokalia and Consonantia, there live the blind
+                                    texts. Separated they live in Bookmarksgrove right at the
+                                    coast of the Semantics, a large language ocean.&rdquo;
+                                </p>
+                            </blockquote>
+                            <p class="text-black-50"><strong>Especialidad:</strong> Neurologo</p>
+                        </div>
+                    </div>
                     <div class="item">
                         <div class="testimonial">
                             <img src="./public/landing/images/perfiles/avatar.jpg" alt="Image"
@@ -243,7 +304,6 @@
         </div>
     </div>
 
-    <!-- Preloader -->
     <div id="overlayer"></div>
     <div class="loader">
         <div class="spinner-border" role="status">
@@ -257,6 +317,8 @@
     <script src="./public/landing/js/navbar.js"></script>
     <script src="./public/landing/js/counter.js"></script>
     <script src="./public/landing/js/custom.js"></script>
+
+    <script src="./scripts/index.js"></script>
 
 </body>
 
