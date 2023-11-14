@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+require('dotenv').config();
 const Database = require('../config/DataBase');
 
 class Usuario {
@@ -35,7 +36,6 @@ class Usuario {
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(this.password, saltRounds);
 
-            // Insertar el nuevo usuario en la base de datos
             const insertQuery = 'INSERT INTO usuarios (nombre, apellidos, usuario, correo, password, rol) VALUES (?, ?, ?, ?, ?, ?)';
             const insertParams = [
                 this.nombre,
@@ -49,10 +49,12 @@ class Usuario {
             const insertResult = await db.query(insertQuery, insertParams);
             const userId = insertResult.insertId;
 
-            // Generar el token JWT
-            const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
-                expiresIn: '1h',
-            });
+            const token = jwt.sign(
+                { id: userId, usuario: this.usuario, rol: this.rol  },
+                process.env.JWT_SECRET, {
+                    expiresIn: '1h',
+                }
+            );
 
             await db.close();
             return { id_usuario: userId, token };
@@ -66,7 +68,6 @@ class Usuario {
             const db = new Database();
             await db.connect();
 
-            // Buscar al usuario por nombre de usuario o correo electrónico
             const query = 'SELECT * FROM usuarios WHERE usuario = ? OR correo = ?';
             const params = [usuario, usuario];
             const result = await db.query(query, params);
@@ -84,17 +85,16 @@ class Usuario {
             }
 
             // Generar el token JWT
-            const token = jwt.sign({ id: usuarioEncontrado.id }, process.env.JWT_SECRET, {
-                expiresIn: '1h',
-            });
+            const token = jwt.sign(
+                { id: usuarioEncontrado.id, usuario: usuarioEncontrado.usuario, rol: usuarioEncontrado.rol  },
+                process.env.JWT_SECRET, {
+                    expiresIn: '1h',
+                }
+            );
 
-            // Asignar el token al usuario
             this.token = token;
-
-            // Cerrar la conexión a la base de datos
             await db.close();
 
-            // devolver el usuario y el token
             return { usuario: usuarioEncontrado, token };
         } catch (error) {
             throw error;

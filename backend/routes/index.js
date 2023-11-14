@@ -4,7 +4,6 @@ const usuariosRouter = require('./usuariosRouter');
 const especialidadesRouter = require('./especialidadesRouter');
 const medicosRouter = require('./medicosRouter');
 
-
 function routerApi(app) {
     app.use(bodyParser.json());
     app.use('/especialidades', especialidadesRouter);

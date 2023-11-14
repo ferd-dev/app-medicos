@@ -58,16 +58,10 @@ class UsuariosController {
     async iniciarSesion(req, res) {
         try {
             const { usuario, password } = req.body;
-
             const usuarioExistente = new Usuario();
-
-            // Iniciar sesión del usuario
             const resultado = await usuarioExistente.iniciarSesion(usuario, password);
 
-            // Generar el token JWT con el id del usuario
-            const token = jwt.sign({ id: resultado.usuario.id }, process.env.JWT_SECRET);
-
-            res.status(200).json({ usuario: resultado.usuario, token });
+            res.status(200).json({ usuario: resultado.usuario, token: resultado.token });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
