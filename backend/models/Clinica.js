@@ -10,11 +10,15 @@ class Clinica {
         this.direccion = direccion;
     }
 
-    static async obtenerClinicas() {
+    static async obtenerClinicas(cantidad) {
         try {
             const db = new Database();
             await db.connect();
-            const query = 'SELECT * FROM clinicas WHERE activo = 1 ORDER BY id DESC LIMIT 5';
+            let query = 'SELECT * FROM clinicas WHERE activo = 1 ORDER BY id DESC';
+
+            if (cantidad) {
+                query += ` LIMIT ${cantidad}`;
+            }
             const resultado = await db.query(query);
             await db.close();
 
