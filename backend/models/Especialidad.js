@@ -12,7 +12,7 @@ class Especialidad {
         try {
             const db = new Database();
             await db.connect();
-            const query = 'SELECT * FROM especialidades';
+            const query = 'SELECT * FROM especialidades ORDER BY nombre ASC';
             const resultado = await db.query(query);
             await db.close();
 

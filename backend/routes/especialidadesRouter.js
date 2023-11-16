@@ -5,7 +5,7 @@ const router = express.Router();
 const especialidadesController = new EspecialidadesController();
 
 
-router.get('/', autenticacionMiddleware, especialidadesController.obtenerEspecialidades);
+router.get('/', especialidadesController.obtenerEspecialidades);
 router.get('/:id', especialidadesController.obtenerEspecialidad);
 router.post('/', especialidadesController.crearEspecialidad);
 router.put('/:id', especialidadesController.actualizarEspecialidad);

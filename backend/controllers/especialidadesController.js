@@ -37,6 +37,7 @@ class EspecialidadesController {
 
             res.status(201).json({
                 id: especialidadId,
+                state: true,
                 message: 'Especialidad creada exitosamente',
             });
         } catch (error) {
@@ -56,7 +57,7 @@ class EspecialidadesController {
             );
             await especialidad.actualizarEspecialidad();
 
-            res.status(200).json({ message: 'Especialidad actualizada' });
+            res.status(200).json({ state: true, message: 'Especialidad actualizada' });
         } catch (error) {
             res.status(500).json({ error: 'Error al actualizar la especialidad' });
         }
@@ -67,7 +68,7 @@ class EspecialidadesController {
             const { id } = req.params;
             await Especialidad.activarEspecialidad(id);
 
-            res.status(200).json({ message: 'Especialidad activada' });
+            res.status(200).json({ state: true, message: 'Especialidad activada' });
         } catch (error) {
             res.status(500).json({ error: 'Error al activar la especialidad' });
         }
@@ -78,7 +79,7 @@ class EspecialidadesController {
             const { id } = req.params;
             await Especialidad.desactivarEspecialidad(id);
 
-            res.status(200).json({ message: 'Especialidad desactivada' });
+            res.status(200).json({ state: true, message: 'Especialidad desactivada' });
         } catch (error) {
             res.status(500).json({ error: 'Error al desactivar la especialidad' });
         }

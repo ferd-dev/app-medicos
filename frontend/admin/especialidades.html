@@ -4,20 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador</title>
+    <title>Dashboard | Especialidades</title>
 
-    <link rel="icon" href="./public/dashboard/img/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="./public/dashboard/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../public/dashboard/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../public/dashboard/img/favicon.ico" type="image/x-icon">
 
     <!-- General CSS Files -->
-    <link rel="stylesheet" href="./public/dashboard/modules/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./public/dashboard/modules/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="../public/dashboard/modules/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../public/dashboard/modules/fontawesome/css/all.min.css" />
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="../public/dashboard/modules/datatables/datatables.min.css">
+    <link rel="stylesheet"
+        href="../public/dashboard/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../public/dashboard/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css">
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="./public/dashboard/css/style.css" />
-    <link rel="stylesheet" href="./public/dashboard/css/components.css" />
+    <link rel="stylesheet" href="../public/dashboard/css/style.css" />
+    <link rel="stylesheet" href="../public/dashboard/css/components.css" />
 
     <!--  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
@@ -38,7 +42,7 @@
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="./public/dashboard/img/avatar/avatar-1.png"
+                            <img alt="image" src="../public/dashboard/img/avatar/avatar-1.png"
                                 class="rounded-circle mr-1" />
                             <div class="d-sm-none d-lg-inline-block">Hola, Fernando</div>
                         </a>
@@ -57,16 +61,16 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="#">Admin</a>
+                        <a href="./index.html">MEDI</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="#">ADM</a>
+                        <a href="#">MEDI</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
 
-                        <li>
-                            <a class="nav-link" href="#">
+                        <li class="">
+                            <a class="nav-link" href="./index.html">
                                 <i class="fas fa-fire"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -89,7 +93,7 @@
                         </li>
 
                         <li class="active">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="./especialidades.html">
                                 <i class="fas fa-user-graduate"></i>
                                 <span>Especialidades</span>
                             </a>
@@ -127,28 +131,16 @@
                                     <div class="card-header">
                                         <h4>
                                             Lista de especialidades
-                                            <a href="#" class="btn btn-primary ml-2">
+                                            <button class="btn btn-primary ml-2" onclick="mostrarFormulario(true);">
                                                 <i class="fas fa-plus-circle"></i>
                                                 Nuevo
-                                            </a>
+                                            </button>
                                         </h4>
-                                        <div class="card-header-form">
-                                            <form>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Buscar">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-primary">
-                                                            <i class="fas fa-search"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
                                     </div>
-                                    <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped" id="tabla-especialidades">
-
+                                    <div class="card-body">
+                                        <div class="">
+                                            <table class="table table-striped" id="tabla-especialidades"
+                                                style="width:100%">
 
                                             </table>
                                         </div>
@@ -158,24 +150,26 @@
                             <div class="col-sm-12 col-md-8 mx-auto" id="form-especialidades" style="display: none;">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3>Nueva especialidad</h3>
+                                        <h3 id="tituloForm">Nueva especialidad</h3>
                                     </div>
                                     <div class="card-body">
                                         <form id="frmEspecialidades">
                                             <div class="form-group">
+                                                <input type="hidden" id="id">
                                                 <label>Nombre</label>
-                                                <input type="text" class="form-control" id="nombre">
+                                                <input type="text" class="form-control" id="nombre" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Descripción</label>
-                                                <textarea class="form-control" id="descripcion"></textarea>
+                                                <textarea class="form-control" id="descripcion" required></textarea>
                                             </div>
                                             <div class="form-group text-center">
-                                                <button class="btn btn-primary mr-1" type="submit">
+                                                <button class="btn btn-primary mr-1" type="submit" id="btnFrom">
                                                     <i class="fas fa-save"></i>
                                                     Guardar
                                                 </button>
-                                                <button class="btn btn-secondary" type="reset">
+                                                <button class="btn btn-secondary" type="reset"
+                                                    onclick="mostrarFormulario(false);">
                                                     <i class="fas fa-times"></i>
                                                     Cancelar
                                                 </button>
@@ -202,24 +196,28 @@
     </div>
 
     <!-- General JS Scripts -->
-    <script src="./public/dashboard/modules/jquery.min.js"></script>
-    <script src="./public/dashboard/modules/popper.js"></script>
-    <script src="./public/dashboard/modules/tooltip.js"></script>
-    <script src="./public/dashboard/modules/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./public/dashboard/modules/nicescroll/jquery.nicescroll.min.js"></script>
-    <script src="./public/dashboard/modules/moment.min.js"></script>
-    <script src="./public/dashboard/js/stisla.js"></script>
+    <script src="../public/dashboard/modules/jquery.min.js"></script>
+    <script src="../public/dashboard/modules/popper.js"></script>
+    <script src="../public/dashboard/modules/tooltip.js"></script>
+    <script src="../public/dashboard/modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../public/dashboard/modules/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="../public/dashboard/modules/moment.min.js"></script>
+    <script src="../public/dashboard/js/stisla.js"></script>
 
     <!-- JS Libraies -->
+    <script src="../public/dashboard/modules/datatables/datatables.min.js"></script>
+    <script src="../public/dashboard/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../public/dashboard/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+    <script src="../public/dashboard/modules/jquery-ui.min.js"></script>
 
     <!-- Page Specific JS File -->
 
     <!-- Template JS File -->
-    <script src="./public/dashboard/js/scripts.js"></script>
-    <script src="./public/dashboard/js/custom.js"></script>
+    <script src="../public/dashboard/js/scripts.js"></script>
+    <script src="../public/dashboard/js/custom.js"></script>
 
     <!--  -->
-    <script type="module" src="./scripts/especialidades.js"></script>
+    <script src="./scripts/especialidades.js"></script>
 </body>
 
 </html>
