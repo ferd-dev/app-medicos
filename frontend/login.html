@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Medi</title>
+    <title>Medi | Login</title>
 
     <link rel="icon" href="./public/landing/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="./public/landing/images/favicon.ico" type="image/x-icon">
@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="./public/landing/css/tiny-slider.css" />
     <link rel="stylesheet" href="./public/landing/css/aos.css" />
     <link rel="stylesheet" href="./public/landing/css/style.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
 </head>
 
 <body>
@@ -41,16 +44,11 @@
                     <a href="index.html" class="logo m-0 float-start">Medi</a>
 
                     <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                        <li class="active"><a href="index.html">Inicio</a></li>
+                        <li><a href="index.html">Inicio</a></li>
                         <li><a href="./medicos.html">Medicos</a></li>
                         <li><a href="./clinicas.html">Hospitales / Clinicas</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a class="navLogin" href="./login.html">Login</a></li>
-                        <li><a class="navPerfil" style="display: none;" href="#">Mi perfil</a></li>
-                        <li>
-                            <a class="navSalir" style="display: none;" href="#">Cerrar
-                                sesión</a>
-                        </li>
+                        <li class="active"><a href="./login.html">Login</a></li>
                     </ul>
 
                     <a href="#"
@@ -63,62 +61,112 @@
         </div>
     </nav>
 
-    <div class="hero">
-        <div class="hero-slide">
-            <div class="img overlay" style="background-image: url('./public/landing/images/hero/hero-1.jpg')"></div>
-            <div class="img overlay" style="background-image: url('./public/landing/images/hero/hero-2.jpg')"></div>
-            <div class="img overlay" style="background-image: url('./public/landing/images/hero/hero-5.jpg')"></div>
-        </div>
-
+    <div class="hero page-inner overlay" style="background-image: url('./public/landing/images/hero/hero-8.jpg')">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                <div class="col-lg-9 text-center">
-                    <h1 class="heading" data-aos="fade-up">
-                        ¡Bienvenido a Nuestra Plataforma Médica!
-                    </h1>
-                    <h5 class="text-white">
-                        Un espacio donde médicos y pacientes se conectan para brindar y recibir la mejor atención
-                        médica. Los médicos pueden registrarse y crear perfiles detallados para que los usuarios puedan
-                        encontrar al especialista que necesitan. ¡Descubre a los profesionales de la salud que están
-                        aquí para cuidar de ti!
-                    </h5>
+                <div class="col-lg-9 text-center mt-5">
+                    <h1 class="heading mt-5" data-aos="fade-up">Bienvenido</h1>
+
+                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+                        <ol class="breadcrumb text-center justify-content-center">
+                            <li class="breadcrumb-item ">
+                                <button class="btn btn-sm btn-primary py-3 px-3" id="btnLogin">
+                                    Iniciar Sesión
+                                </button>
+                                <button class="btn btn-sm btn-dark py-2 px-3" id="btnRegistro">
+                                    Restrarse
+                                </button>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
 
-    <section class="features-1">
+    <div class="section">
         <div class="container">
+            <!-- Formulario de Iniciar Sesion -->
             <div class="row">
-                <div class="col-md-12 mx-auto my-3 pb-4">
-                    <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">
-                        Clinicas y Hospitales <a href="./clinicas.html" class="btn btn-primary px-3 py-2">Ver más</a>
-                    </h2>
+                <div class="col-lg-8 mx-auto" data-aos="fade-up" data-aos-delay="200" style="display: block;"
+                    id="contentFrmLogin">
+                    <div class="text-center">
+                        <h2>Iniciar Sesión</h2>
+                    </div>
+                    <hr>
+                    <form id="frmLogin" class="mt-3">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12 mx-auto">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" placeholder="Usuario o Correo"
+                                            name="usuario" required />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="password" class="form-control" placeholder="Contraseña"
+                                            name="password" required />
+                                    </div>
+
+                                    <div class="col-12 text-center">
+                                        <input type="submit" value="Iniciar Sesión" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="row" id="contenedorClinicas">
-
-            </div>
-        </div>
-    </section>
-
-    <div class="section sec-testimonials">
-        <div class="container">
+            <!-- Formulario de registro -->
             <div class="row">
-                <div class="col-md-12 text-center mx-auto my-3 pb-4">
-                    <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">
-                        Medicos registrados recientemente <a href="./medicos.html" class="btn btn-primary px-3 py-2">Ver
-                            todos</a>
-                    </h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4"></div>
-            </div>
-            <div class="testimonial-slider-wrap">
-                <div class="testimonial-slider" id="contenedorMedicos">
+                <div class="col-lg-8 mx-auto" data-aos="fade-up" data-aos-delay="200" style="display: none;"
+                    id="contentFrmRegistro">
+                    <div class="text-center">
+                        <h2>Registrarse</h2>
+                    </div>
+                    <hr>
+                    <form id="frmRegistro" class="mt-3">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12 mx-auto">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input type="text" class="form-control" placeholder="Nombre" name="nombre"
+                                            required maxlength="50" />
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input type="text" class="form-control" placeholder="Apellidos" name="apellidos"
+                                            required maxlength="50" />
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input type="text" class="form-control" placeholder="Nombre de usuario"
+                                            name="usuario" maxlength="10" required />
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input type="email" class="form-control" placeholder="Correo" name="correo"
+                                            required maxlength="100" />
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <select class="form-control" name="rol" required>
+                                            <option value="">Registrarse como</option>
+                                            <option value="medi">Medico</option>
+                                            <option value="user">Usuario</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input type="password" class="form-control" placeholder="Contraseña"
+                                            name="password" minlength="6" required />
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input type="password" class="form-control" placeholder="Repita su contraseña"
+                                            name="password2" minlength="6" required />
+                                    </div>
 
-
+                                    <div class="col-12 text-center">
+                                        <input type="submit" value="Registrarme" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -210,7 +258,7 @@
     <script src="./public/landing/js/counter.js"></script>
     <script src="./public/landing/js/custom.js"></script>
 
-    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/login.js"></script>
 
 </body>
 

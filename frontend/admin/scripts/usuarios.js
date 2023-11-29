@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             usuario,
             correo,
             password,
-            rol: "medi",
+            rol: "user",
         };
 
         let dataUsuarioAc = {
@@ -67,10 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-function ver(id) {
-    console.log(id);
-}
 
 function desactivar(id) {
     let data = {
@@ -119,7 +115,7 @@ function editar(id) {
         .then((res) => res.json())
         .then((data) => {
             let usuario = data.data;
-            // console.log(usuario);
+            console.log(usuario);
             document.getElementById("id").value = usuario.id;
             document.getElementById("nombre").value = usuario.nombre;
             document.getElementById("apellidos").value = usuario.apellidos;
@@ -139,7 +135,7 @@ function listar() {
     let num = 1;
     tabla = $("#tblUsuarios").DataTable({
         ajax: {
-            url: URL + "/usuario/admin/usuarios/medicos",
+            url: URL + "/usuario/admin/usuarios",
             method: "GET",
             dataSrc: "data",
         },
@@ -166,10 +162,7 @@ function listar() {
                 data: "id",
                 render: function (data) {
                     return (
-                        `<button class="btn btn-sm btn-info" onclick="ver(${data})">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="btn btn-sm btn-warning" onclick="editar(${data})">
+                        `<button class="btn btn-sm btn-warning" onclick="editar(${data})">
                             <i class="fas fa-pencil-alt"></i>
                         </button>`
                     );

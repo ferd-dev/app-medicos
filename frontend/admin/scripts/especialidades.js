@@ -12,6 +12,49 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+async function listarEspecialidades() {
+    const response = await fetch(`${URL}/especialidades`);
+    const data = await response.json();
+    // console.log(data);
+    let num = 1;
+    const datos = data.data.map((especialidad) => [
+        num++,
+        especialidad.nombre,
+        especialidad.descripcion,
+        `<button onclick="cambiarEstado(${especialidad.id}, ${especialidad.activo })" class="btn btn-sm btn-${especialidad.activo ? "success" : "danger"
+        }">
+            ${especialidad.activo ? "Activo" : "Inactivo"}
+        </button>`,
+        `<button class="btn btn-warning" onclick="editar(${especialidad.id})"><i class="fas fa-pencil-alt"></i></button>`,
+    ]);
+
+    // console.log(datos);
+
+    let tablaEspecialidades = document.getElementById("tabla-especialidades");
+
+    tabla = $(tablaEspecialidades).dataTable({
+        data: datos,
+        columns: [
+            { title: "#", className: "text-center" },
+            { title: "Nombre" },
+            { title: "Descripción" },
+            { title: "Estado" },
+            { title: "Opciones" },
+        ],
+        language: {
+            url: "../helpers/datatables_es.json",
+        },
+        processing: true,
+        processing: true,
+        responsive: true,
+        scrollX: false,
+        bDestroy: true,
+        processing: true,
+            
+        // order: [[1, "asc"]],
+    }).DataTable();
+}
+
 async function cambiarEstado(id, estado) {
     try {
         let res;
@@ -36,7 +79,7 @@ async function cambiarEstado(id, estado) {
         }
         
         if (res.state) {
-            tabla.ajax.reload();
+            await listarEspecialidades();
             mensaje(res.message, "success");
         } else {
             mensaje(res.error, "error");
@@ -98,7 +141,6 @@ async function guardar(e) {
     if (res.state) {
         await listarEspecialidades();
         
-
         mensaje(res.message, "success");
         mostrarFormulario(false);
         document.getElementById("frmEspecialidades").reset();
@@ -133,45 +175,7 @@ function mostrarFormulario(bandera) {
     }
 }
 
-async function listarEspecialidades() {
-    const response = await fetch(`${URL}/especialidades`);
-    const data = await response.json();
-    let num = 1;
-    const datos = data.especialidades.map((especialidad) => [
-        num++,
-        especialidad.nombre,
-        especialidad.descripcion,
-        `<button onclick="cambiarEstado(${especialidad.id}, ${especialidad.activo })" class="btn btn-sm btn-${especialidad.activo ? "success" : "danger"
-        }">
-            ${especialidad.activo ? "Activo" : "Inactivo"}
-        </button>`,
-        `<button class="btn btn-warning" onclick="editar(${especialidad.id})"><i class="fas fa-pencil-alt"></i></button>`,
-    ]);
 
-    let tablaEspecialidades = document.getElementById("tabla-especialidades");
-
-    tabla = $(tablaEspecialidades).dataTable({
-        data: datos,
-        columns: [
-            { title: "#", className: "text-center" },
-            { title: "Nombre" },
-            { title: "Descripción" },
-            { title: "Estado" },
-            { title: "Opciones" },
-        ],
-        language: {
-            url: "../helpers/datatables_es.json",
-        },
-        processing: true,
-        processing: true,
-        responsive: true,
-        scrollX: false,
-        bDestroy: true,
-        processing: true,
-            
-        // order: [[1, "asc"]],
-    }).DataTable();
-}
 
 function mensaje(mensaje, icono ) {
     const Toast = Swal.mixin({

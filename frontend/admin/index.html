@@ -39,7 +39,7 @@
                             <div class="d-sm-none d-lg-inline-block">Hola, Fernando</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="features-profile.html" class="dropdown-item has-icon">
+                            <a href="#" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Perfil
                             </a>
                             <div class="dropdown-divider"></div>
@@ -56,7 +56,7 @@
                         <a href="./index.html">MEDI</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="#">MEDI</a>
+                        <a href="./index.html">MEDI</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
@@ -73,13 +73,13 @@
                                 <i class="fas fa-users"></i> <span>Usuarios</span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="nav-link" href="#">Administradores</a>
+                                    <a class="nav-link" href="./administradores.html">Administradores</a>
                                 </li>
                                 <li>
                                     <a class="nav-link" href="./medicos.html">Medicos</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="#">Usuario</a>
+                                    <a class="nav-link" href="./usuarios.html">Usuario</a>
                                 </li>
                             </ul>
                         </li>
@@ -92,14 +92,7 @@
                         </li>
 
                         <li>
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-puzzle-piece"></i>
-                                <span>Publicidad</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="./clinicas.html">
                                 <i class="fas fa-hospital"></i>
                                 <span>Hospitales / Clinicas</span>
                             </a>
@@ -115,8 +108,76 @@
                     <div class="section-header">
                         <h1>Pagina en blanco</h1>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <a href="./medicos.html">
+                                            <h4>Medicos</h4>
+                                        </a>
+                                    </div>
+                                    <div class="card-body" id="medicos">
 
-                    <div class="section-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-info">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <a href="./usuarios.html">
+                                            <h4>Usuarios</h4>
+                                        </a>
+                                    </div>
+                                    <div class="card-body" id="usuarios">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-warning">
+                                    <i class="fas fa-puzzle-piece"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <a href="./especialidades.html">
+                                            <h4>Especialidades</h4>
+                                        </a>
+                                    </div>
+                                    <div class="card-body" id="especialidades">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-success">
+                                    <i class="fas fa-hospital"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <a href="./clinicas.html">
+                                            <h4>Clinicas</h4>
+                                        </a>
+                                    </div>
+                                    <div class="card-body" id="clinicas">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
             <footer class="main-footer">
@@ -148,6 +209,8 @@
     <!-- Template JS File -->
     <script src="../public/dashboard/js/scripts.js"></script>
     <script src="../public/dashboard/js/custom.js"></script>
+
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

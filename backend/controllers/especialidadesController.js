@@ -5,18 +5,24 @@ class EspecialidadesController {
         try {
             const especialidades = await Especialidad.obtenerEspecialidades();
 
-            res.status(200).json({ especialidades });
+            const data = {
+                "success": true,
+                "data": especialidades,
+            }
+
+            res.status(200).json(data);
         } catch (error) {
-            res.status(500).json({ error: 'Error al obtener las especialidades' });
+            res.status(500).json({
+                "success": false,
+                "message": error.message
+            });
         }
     }
 
     async obtenerEspecialidad(req, res) {
         try {
             const { id } = req.params;
-            const especialidad = await Especialidad.obtenerEspecialidadPorId(
-                id
-            );
+            const especialidad = await Especialidad.obtenerEspecialidadPorId(id);
 
             res.status(200).json({ especialidad });
         } catch (error) {

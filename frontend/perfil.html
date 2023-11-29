@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medi | Login</title>
+
+    <link rel="icon" href="./public/landing/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./public/landing/images/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="./public/landing/fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="./public/landing/fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="./public/landing/css/tiny-slider.css" />
+    <link rel="stylesheet" href="./public/landing/css/aos.css" />
+    <link rel="stylesheet" href="./public/landing/css/style.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+        <div class="container">
+            <div class="menu-bg-wrap">
+                <div class="site-navigation">
+                    <a href="index.html" class="logo m-0 float-start">Medi</a>
+
+                    <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="./medicos.html">Medicos</a></li>
+                        <li><a href="./clinicas.html">Hospitales / Clinicas</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li class="active"><a href="./perfil.html">Mi perfil</a></li>
+                        <li><a href="#">Cerrar sesión</a></li>
+                    </ul>
+
+                    <a href="#"
+                        class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                        data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero page-inner overlay" style="background-image: url('./public/landing/images/hero/hero-8.jpg')">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-9 text-center mt-5">
+                    <h1 class="heading mt-5" data-aos="fade-up">Mi Perfil</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="200" style="display: block;">
+                    <div>
+                        <h4>Datos de usuario</h4>
+                    </div>
+                    <hr>
+                    <div class="row mt-3">
+                        <div class="col-md-11 col-sm-12 mx-auto">
+                            <div class="row">
+                                <ul class="list-group list-group-flush" id="ulDatosUsuario">
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-11 text-center">
+                            <button class="btn btn-sm btn-primary py-2 px-3" id="btnEditarUsuario">
+                                <i class="fas fa-pen"></i> Editar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h4>Datos Medicos</h4>
+                    </div>
+                    <hr>
+                    <div class="row mt-3">
+                        <div class="col-md-11 col-sm-12 mx-auto">
+                            <div class="row" id="rowDatosMedicoImagen">
+
+                            </div>
+                            <div class="row">
+                                <ul class="list-group list-group-flush" id="rowDatosMedico">
+
+                                </ul>
+                                <ul class="list-group list-group-flush" id="rowDatosMedicoTrabajo">
+                                    <li class="list-group-item">
+                                        <h6>
+                                            <strong>Experiencia laboral</strong>
+                                            <button class="btn btn-sm btn-primary py-1 px-2" data-bs-toggle="modal"
+                                                data-bs-target="#agregarExperienciaModal">
+                                                <i class="fas fa-plus-circle"></i>
+                                            </button>
+                                        </h6>
+                                        <ul class="list-group list-group-flush pl-5" id="listaTrabajos">
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="list-group list-group-flush" id="rowDatosMedicoEstudios">
+                                    <li class="list-group-item">
+                                        <h6>
+                                            <strong>Experiencia Academica</strong>
+                                            <button class="btn btn-sm btn-primary py-1 px-2" data-bs-toggle="modal"
+                                                data-bs-target="#agregarEstudiosModal">
+                                                <i class="fas fa-plus-circle"></i>
+                                            </button>
+                                        </h6>
+                                        <ul class="list-group list-group-flush pl-5" id="listaEstudios">
+
+                                        </ul>
+                                    </li>
+                                    <li class="list-group-item"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-11 text-center">
+                            <button class="btn btn-sm btn-primary py-2 px-3" id="btnEditarMedico">
+                                <i class="fas fa-pen"></i> Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALES -->
+    <!-- Modal editar usuario -->
+    <div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editarUsuarioModalLabel">Editar datos de usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmEditarUsuario">
+                        <div class="row">
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" class="form-control" placeholder="Nombre" name="nombre"
+                                    id="nombreUsuario" required maxlength="50" />
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" class="form-control" placeholder="Apellidos" name="apellidos"
+                                    id="apellidosUsuario" required maxlength="50" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn brn-sm btn-danger py-2 px-3"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn brn-sm btn-primary py-2 px-3">Actualizar datos</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal editar medico -->
+    <div class="modal fade" id="editarMedicoModal" tabindex="-1" aria-labelledby="editarMedicoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editarMedicoModalLabel">Editar datos Medicos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmEditarMedico">
+                        <div class="row">
+                            <div class="col-12 col-md-12 mb-3">
+                                <select class="form-control" name="id_especialidad" id="id_especialidad" required>
+
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <select class="form-control" name="id_clinica" id="id_clinica" required>
+
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="number" class="form-control" placeholder="Años de experiencia"
+                                    name="anios_experiencia" id="anios_experiencia" min="1" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Licencia medica" name="licencia"
+                                    id="licencia" min="1" />
+                            </div>
+
+                            <p>Lugar de recidencia</p>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Pais" name="pais" id="pais"
+                                    value="Bolivia" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Departamento" name="departamento"
+                                    id="departamento" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Ciudad" name="ciudad"
+                                    id="ciudad" />
+                            </div>
+                        </div>
+                        <div class="rw">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="fecha_nacimiento">fecha de nacimiento</label>
+                                <input type="date" class="form-control" placeholder="Fecha de nacimiento"
+                                    name="fecha_nacimiento" id="fecha_nacimiento" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn brn-sm btn-danger py-2 px-3"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn brn-sm btn-primary py-2 px-3">Actualizar datos</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal agregar experiencia laboral -->
+    <div class="modal fade" id="agregarExperienciaModal" tabindex="-1" aria-labelledby="agregarExperienciaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="agregarExperienciaModalLabel">Nueva experiencia laboral</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-12 col-md-12 mb-3">
+                                <select class="form-control" name="id_clinica" id="id_clinica2" required>
+                                    <option value="">Lugar de trabajo</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" class="form-control" placeholder="Puesto" name="puesto" min="1" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Año de inicio" name="anio_incio" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Año de finalización"
+                                    name="anio_fin" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="number" class="form-control" placeholder="Duracion (meses)"
+                                    name="tiempo_meses" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn brn-sm btn-danger py-2 px-3"
+                        data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn brn-sm btn-primary py-2 px-3">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal agregar experiencia Academica -->
+    <div class="modal fade" id="agregarEstudiosModal" tabindex="-1" aria-labelledby="agregarEstudiosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="agregarEstudiosModalLabel">Nueva estudio</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-12 col-md-12 mb-3">
+                                <select class="form-control" name="id_tipo_estudio" required>
+                                    <option value="">Tipo de estudio</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" class="form-control" placeholder="Tutulo" name="titulo"
+                                    maxlength="150" required />
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" class="form-control" placeholder="Instituto" name="instituto"
+                                    maxlength="100" required />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Año de Inicio"
+                                    name="anio_inicio" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Año de finalización"
+                                    name="anio_fin" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="number" class="form-control" placeholder="Duracion (meses)"
+                                    name="tiempo_meses" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn brn-sm btn-danger py-2 px-3"
+                        data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn brn-sm btn-primary py-2 px-3">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- / MODALES -->
+
+    <div class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="widget">
+                        <h3>Contactanos</h3>
+                        <address>Av. de las americas #567</address>
+                        <ul class="list-unstyled links">
+                            <li>
+                                64-98077
+                            </li>
+                            <li>
+                                <a href="https://api.whatsapp.com/send?phone=78912345">+591 78912345</a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@mydomain.com">info@mydomain.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="widget">
+                        <h3>Páginas</h3>
+                        <ul class="list-unstyled float-start links">
+                            <li><a href="#">Visión</a></li>
+                            <li><a href="#">Misión</a></li>
+                            <li><a href="#">Terminos y Condiciones</a></li>
+                            <li><a href="#">Politicas de Privacidad</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="widget">
+                        <h3>Nuestras redes sociales</h3>
+                        <ul class="list-unstyled social">
+                            <li>
+                                <a href="#"><span class="icon-instagram"></span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="icon-twitter"></span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="icon-facebook"></span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="icon-linkedin"></span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="icon-pinterest"></span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="icon-dribbble"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <p>
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        . Todos los derechos recervados. &mdash; Desarrollado por el equipo de SIS324
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <script src="./public/landing/js/bootstrap.bundle.min.js"></script>
+    <script src="./public/landing/js/tiny-slider.js"></script>
+    <script src="./public/landing/js/aos.js"></script>
+    <script src="./public/landing/js/navbar.js"></script>
+    <script src="./public/landing/js/counter.js"></script>
+    <script src="./public/landing/js/custom.js"></script>
+
+    <script type="module" src="./scripts/perfil.js"></script>
+
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Especialidades</title>
+    <title>Dashboard | Clinicas</title>
 
     <link rel="icon" href="../public/dashboard/img/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../public/dashboard/img/favicon.ico" type="image/x-icon">
@@ -92,14 +92,14 @@
                             </ul>
                         </li>
 
-                        <li class="active">
+                        <li>
                             <a class="nav-link" href="./especialidades.html">
                                 <i class="fas fa-user-graduate"></i>
                                 <span>Especialidades</span>
                             </a>
                         </li>
 
-                        <li>
+                        <li class="active">
                             <a class="nav-link" href="./clinicas.html">
                                 <i class="fas fa-hospital"></i>
                                 <span>Hospitales / Clinicas</span>
@@ -114,16 +114,16 @@
             <div class="main-content">
                 <section class="section">
                     <div class="section-header">
-                        <h1>Especialidades</h1>
+                        <h1>Clinicas / Hospitales</h1>
                     </div>
 
                     <div class="section-body">
                         <div class="row">
-                            <div class="col-12" id="card-especialidades">
+                            <div class="col-12" id="cardTablaClinicas">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>
-                                            Lista de especialidades
+                                            Lista de clinicas / hospitales
                                             <button class="btn btn-primary ml-2" onclick="mostrarFormulario(true);">
                                                 <i class="fas fa-plus-circle"></i>
                                                 Nuevo
@@ -132,29 +132,63 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="">
-                                            <table class="table table-striped" id="tabla-especialidades"
-                                                style="width:100%">
-
+                                            <table class="table table-striped" id="tblClinicas" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Nombre</th>
+                                                        <th>Teléfono</th>
+                                                        <th>Departamento</th>
+                                                        <th>Municipio</th>
+                                                        <th>Dirección</th>
+                                                        <th>Estado</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-8 mx-auto" id="form-especialidades" style="display: none;">
+
+                            <div class="col-sm-12 col-md-8 mx-auto" id="cardFrmClinicas" style="display: none;">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 id="tituloForm">Nueva especialidad</h3>
+                                        <h3 id="tituloForm">Clinica/Hospital</h3>
                                     </div>
                                     <div class="card-body">
-                                        <form id="frmEspecialidades">
+                                        <form id="frmClinicas">
                                             <div class="form-group">
                                                 <input type="hidden" id="id">
                                                 <label>Nombre</label>
                                                 <input type="text" class="form-control" id="nombre" required>
                                             </div>
                                             <div class="form-group">
-                                                <label>Descripción</label>
-                                                <textarea class="form-control" id="descripcion" required></textarea>
+                                                <label>Teléfono</label>
+                                                <input type="text" class="form-control" id="telefono" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Departamento</label>
+                                                <select class="form-control" id="departamento" required>
+                                                    <option value="">Seleccione un departamento</option>
+                                                    <option value="Chuquisaca">Chuquisaca</option>
+                                                    <option value="La Paz">La Paz</option>
+                                                    <option value="Cochabamba">Cochabamba</option>
+                                                    <option value="Oruro">Oruro</option>
+                                                    <option value="Potosí">Potosí</option>
+                                                    <option value="Tarija">Tarija</option>
+                                                    <option value="Santa Cruz">Santa Cruz</option>
+                                                    <option value="Beni">Beni</option>
+                                                    <option value="Pando">Pando</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Municipio</label>
+                                                <input type="text" class="form-control" id="municipio" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Dirección</label>
+                                                <input type="text" class="form-control" id="direccion" required>
                                             </div>
                                             <div class="form-group text-center">
                                                 <button class="btn btn-primary mr-1" type="submit" id="btnFrom">
@@ -210,7 +244,7 @@
     <script src="../public/dashboard/js/custom.js"></script>
 
     <!--  -->
-    <script src="./scripts/especialidades.js"></script>
+    <script src="./scripts/clinicas.js"></script>
 </body>
 
 </html>
