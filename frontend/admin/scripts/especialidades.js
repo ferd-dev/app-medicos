@@ -3,6 +3,7 @@ let tabla;
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
+        verificarAccesso();
         await listarEspecialidades();
         let frmEspecialidades = document.getElementById("frmEspecialidades");
         frmEspecialidades.addEventListener("submit", guardar);
@@ -11,6 +12,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error al obtener las especialidades:", error);
     }
 });
+
+function verificarAccesso() {
+    const token = localStorage.getItem('token');
+    if (!token) { window.location.href = '../index.html'; }
+
+    let datosUsuario = localStorage.getItem('datosUsuario');
+    datosUsuario = JSON.parse(datosUsuario);
+    if (datosUsuario.rol != 'admin') {
+        window.location.href = '../index.html';
+    }
+
+    document.getElementById("nombreUsuario").innerHTML = datosUsuario.nombre + " " + datosUsuario.apellidos;
+}
+
+function salir() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_usuario');
+    localStorage.removeItem('datosUsuario');
+    window.location.href = '../index.html';
+}
 
 async function listarEspecialidades() {
     const response = await fetch(`${URL}/especialidades`);

@@ -1,6 +1,9 @@
+import { mostrarEnlaces, cerrarSesion } from '../helpers/seguridad.js';
+
 const url = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded",  async() => {
+    mostrarEnlaces();
     try {
         const clinicas = await obtenerClinicas();
         mostrarClinicas(clinicas);  
@@ -83,7 +86,7 @@ function mostrarMedicos(medicos) {
                     <p class="text-black-50"><strong>Especialidad:</strong> ${medico.especialidad}</p>
                     <p class="text-black-50"><strong>Trabaja en:</strong> ${medico.clinica}</p>
                     <p class="text-black-50">
-                        ${medico.anios_experiencia != null ? medico.anios_experiencia + 'años de experiencia' : 'Sin experiencia' } 
+                        ${medico.anios_experiencia != null ? medico.anios_experiencia + ' años de experiencia' : 'Sin experiencia' } 
                     </p>
                     <p class="text-black-50">${medico.departamento}</p>
                     <hr>
@@ -142,3 +145,6 @@ function mostrarEspecialidades(especialidades) {
     });
     id_especialidad.innerHTML = html;
 }
+
+const navSalir = document.querySelectorAll('.navSalir')
+navSalir.forEach(element => { element.addEventListener('click', cerrarSesion);});

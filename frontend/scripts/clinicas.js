@@ -1,6 +1,8 @@
+import { mostrarEnlaces, cerrarSesion } from '../helpers/seguridad.js';
 const url = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded",  async() => {
+    mostrarEnlaces();
     try {
         const clinicas = await obtenerClinicas();
         // console.log(clinicas);
@@ -40,4 +42,11 @@ function mostrarClinicas(clinicas) {
                 </div>`;
     });
     contenedorClinicas.innerHTML = html;
+}
+
+const navSalir = document.querySelectorAll('.navSalir')
+navSalir.forEach(element => { element.addEventListener('click', salir);});
+
+function salir() {
+    cerrarSesion();
 }

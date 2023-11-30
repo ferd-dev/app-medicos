@@ -1,16 +1,16 @@
-import { verificarToken, cerrarSesion } from '../helpers/seguridad.js';
+import { mostrarEnlaces, cerrarSesion } from '../helpers/seguridad.js';
 
 const url = "http://localhost:3000";
 const navSalir = document.querySelectorAll('.navSalir')
 
 document.addEventListener("DOMContentLoaded",  async() => {
-    // verificarToken();
+    mostrarEnlaces();
     try {
         const clinicas = await obtenerClinicas();
         mostrarClinicas(clinicas);  
 
         const medicos = await obtenerMedicos();
-        console.log(medicos);
+        // console.log(medicos);
         mostrarMedicos(medicos);
     } catch (error) {
         console.log(error);   

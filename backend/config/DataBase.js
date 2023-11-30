@@ -26,12 +26,11 @@ class Database {
 
     query(sql, params) {
         return new Promise((resolve, reject) => {
-            // Ejecutar una consulta SQL en la base de datos
             this.connection.query(sql, params, (error, results) => {
                 if (error) {
-                    reject(error); // Rechazar la promesa si hay un error en la consulta
+                    reject(error);
                 } else {
-                    resolve(results); // Resolver la promesa con los resultados de la consulta
+                    resolve(results);
                 }
             });
         });

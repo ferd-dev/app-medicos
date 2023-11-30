@@ -1,11 +1,32 @@
 let URL = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", function () {
+    verificarAccesso();
     obtenerMedicos();
     obtenerUsuarios();
     obtenerEspecialidades();
     obtenerClinicas();
 });
+
+function verificarAccesso() {
+    const token = localStorage.getItem('token');
+    if (!token) { window.location.href = '../index.html'; }
+
+    let datosUsuario = localStorage.getItem('datosUsuario');
+    datosUsuario = JSON.parse(datosUsuario);
+    if (datosUsuario.rol != 'admin') {
+        window.location.href = '../index.html';
+    }
+
+    document.getElementById("nombreUsuario").innerHTML = datosUsuario.nombre + " " + datosUsuario.apellidos;
+}
+
+function salir() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_usuario');
+    localStorage.removeItem('datosUsuario');
+    window.location.href = '../index.html';
+}
 
 function obtenerMedicos() {
     fetch(URL + "/usuario/admin/usuarios/medicos")

@@ -1,16 +1,31 @@
+import { mostrarEnlaces, cerrarSesion } from '../helpers/seguridad.js';
+
 const URL = 'http://localhost:3000';
 const urlParams = new URLSearchParams(window.location.search);
 const idMedico = urlParams.get('id_medico');
 
 document.addEventListener("DOMContentLoaded",  async() => {
+    mostrarEnlaces();
     try {
         const medico = await obtenerInifoMedico();
         console.log(medico);
         mostrarInfo(medico);  
+        mostrarFrmComentario();
     } catch (error) {
         console.log(error);   
     }
 });
+
+function mostrarFrmComentario() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        document.getElementById('frmComentarioLog').style.display = 'block';
+        document.getElementById('frmComentarioNoLog').style.display = 'none';
+    } else {
+        document.getElementById('frmComentarioLog').style.display = 'none';
+        document.getElementById('frmComentarioNoLog').style.display = 'block';
+    }
+}
 
 async function obtenerInifoMedico() {
     try {
@@ -27,8 +42,8 @@ async function obtenerInifoMedico() {
 }
 
 function mostrarInfo(medico) {
-    document.getElementById('txtNombre').innerHTML = medico.data.nombre + ' ' + medico.data.apellidos;
-    document.getElementById('txtNombreApellidos').innerHTML = medico.data.nombre + ' ' + medico.data.apellidos;
+    document.getElementById('txtNombre').innerHTML = 'Dr. ' + medico.data.nombre + ' ' + medico.data.apellidos;
+    document.getElementById('txtNombreApellidos').innerHTML = 'Dr. ' + medico.data.nombre + ' ' + medico.data.apellidos;
     document.getElementById('txtEspecialidad').innerHTML = medico.data.especialidad;
     document.getElementById('txtCorreo').innerHTML = medico.data.correo;
     document.getElementById('txtEdad').innerHTML = medico.data.fecha_nacimiento ? calcularEdad(medico.data.fecha_nacimiento) : 'No especificado';
@@ -76,4 +91,12 @@ function calcularEdad(fecha) {
     }
     
     return edad + ' años de edad';
+}
+
+const navSalir = document.querySelectorAll('.navSalir')
+navSalir.forEach(element => { element.addEventListener('click', salir);});
+
+function salir() {
+    cerrarSesion();
+    mostrarFrmComentario();
 }

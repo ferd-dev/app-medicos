@@ -1,4 +1,4 @@
-import { verificarToken } from '../helpers/seguridad.js';
+import { mostrarEnlaces, cerrarSesion } from '../helpers/seguridad.js';
 let URL = 'http://localhost:3000';
 const ulDatosUsuario = document.getElementById('ulDatosUsuario');
 const rowDatosMedicoImagen = document.getElementById('rowDatosMedicoImagen');
@@ -9,6 +9,20 @@ const editarUsuarioModal = document.getElementById('editarUsuarioModal');
 const editarMedicoModal = document.getElementById('editarMedicoModal');
 const frmEditarUsuario = document.getElementById('frmEditarUsuario');
 const frmEditarMedico = document.getElementById('frmEditarMedico');
+
+function verificarAccesso() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+    } else {
+        let datosUsuario = localStorage.getItem('datosUsuario');
+        datosUsuario = JSON.parse(datosUsuario);
+        if (datosUsuario.rol != 'medi') {
+            window.location.href = 'login.html';
+        }
+    }
+
+}
 
 frmEditarMedico.addEventListener('submit', function (evento) {
     evento.preventDefault();
@@ -45,19 +59,17 @@ frmEditarMedico.addEventListener('submit', function (evento) {
     fetch(url, parametros)
         .then(respuesta => respuesta.json())
         .then(respuesta => {
-            console.log(respuesta);
+            // console.log(respuesta);
             if(respuesta.success){
                 cargarDatosMedico();
                 let modal = bootstrap.Modal.getInstance(editarMedicoModal);
                 modal.hide();
+                mensaje("Datos actualizados correctamente")
             }
         })
         .catch(error => console.log(error));
 });
                 
-
-        
-
 btnEditarMedico.addEventListener('click', function () {
     let id_medico = localStorage.getItem('id_medico');
     let token = localStorage.getItem('token');
@@ -135,16 +147,15 @@ frmEditarUsuario.addEventListener('submit', function (evento) {
                 cargarDatosUsuario(datosUsuario);
                 let modal = bootstrap.Modal.getInstance(editarUsuarioModal);
                 modal.hide();
+                mensaje("Datos actualizados correctamente")
             }
         })
         .catch(error => console.log(error));
 });
 
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
-    verificarToken();
+    verificarAccesso();
+    mostrarEnlaces();
     cargarPerfil();
 });
 
@@ -306,7 +317,7 @@ function cargarDatosMedico() {
         .then(respuesta => respuesta.json())
         .then(respuesta => {
             let medico = respuesta.data;
-            // console.log(medico);
+            console.log(medico);
 
             let perfil = medico.fotografia !== null ? medico.fotografia : 'avatar.jpg';
             let verificado = medico.verificado 
@@ -371,3 +382,28 @@ function calcularEdad(fecha) {
     return edad;
 }
 
+const navSalir = document.querySelectorAll('.navSalir')
+navSalir.forEach(element => { element.addEventListener('click', salir);});
+
+function salir() {
+    cerrarSesion();
+    verificarAccesso();
+}
+
+function mensaje(message, icon = "success") {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+      Toast.fire({
+        icon: icon,
+        title: message
+    });
+}

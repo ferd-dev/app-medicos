@@ -6,6 +6,13 @@ const contentFrmRegistro = document.getElementById('contentFrmRegistro');
 const frmRegistro = document.getElementById('frmRegistro');
 const frmLogin = document.getElementById('frmLogin');
 
+document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token');
+    if (token) {
+        window.location.href = 'index.html';
+    }
+});
+
 frmLogin.addEventListener('submit', function (e) {
     e.preventDefault();
     const formData = new FormData(this);
@@ -32,11 +39,13 @@ frmLogin.addEventListener('submit', function (e) {
                 }
                 localStorage.setItem('datosUsuario', JSON.stringify(data.data.datosUsuario));
                 
-                Swal.fire("Registro exitoso",data.message,"success").then(() => {
-                    if (data.data.id_medico) {
+                Swal.fire("Inicio de sesión exitoso",'',"success").then(() => {
+                    if (data.data.datosUsuario.rol == 'medi') {
                         window.location.href = "perfil.html";
-                    } else {
+                    } else if (data.data.datosUsuario.rol == 'user'){
                         window.location.href = "index.html";
+                    } else if (data.data.datosUsuario.rol == 'admin'){
+                        window.location.href = "./admin/index.html";
                     }
                 });
             } else {
@@ -85,7 +94,7 @@ frmRegistro.addEventListener('submit', function (e) {
                 }
                 localStorage.setItem('datosUsuario', JSON.stringify(data.data.datosUsuario));
                 
-                Swal.fire("Inicio de sesión exitoso",data.message,"success").then(() => {
+                Swal.fire("Registro exitoso",data.message,"success").then(() => {
                     if (data.data.id_medico) {
                         window.location.href = "perfil.html";
                     } else {
